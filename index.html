@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Richard Bricio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Roboto:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container hero">
+            <img id="profile-img" src="https://avatars.githubusercontent.com/u/25221443?v=4" alt="Foto perfil" class="profile-img">
+            <div>
+                <h1>Richard Bricio</h1>
+                <p class="subtitle">Engenheiro de Automação | Tech lover | Bem-vindo ao meu portfólio!</p>
+            </div>
+        </div>
+        <nav>
+            <a href="#sobre">Sobre mim</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#posts">Posts</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+    
+    <main>
+      <section id="sobre">
+        <div class="container about">
+            <img class="about-img" id="about-img" src="https://avatars.githubusercontent.com/u/25221443?v=4" alt="Sobre Mim"/>
+            <div>
+                <h2>Sobre Mim</h2>
+                <p id="bio">
+                  📍 Brasil <br>
+                  Profissional apaixonado por automação, tecnologia e inovação.<br>
+                  Sempre buscando aprendizado, novos desafios e experiências marcantes. Gosto de unir tecnologia a hobbies, compartilhar conhecimento e viver grandes histórias.<br>
+                  Compartilho também minha jornada e descobertas nas redes sociais:
+                  <br>
+                  <a href="https://facebook.com/Richard-Bricio" target="_blank">Facebook</a> •
+                  <a href="https://instagram.com/richardbricio" target="_blank">@richardbricio</a>
+                </p>
+            </div>
+        </div>
+      </section>
+      
+      <section id="portfolio">
+        <div class="container">
+            <h2>Portfólio</h2>
+            <div class="grid" id="github-projects">
+              <!-- Projetos do GitHub carregam automaticamente -->
+            </div>
+        </div>
+      </section>
+      
+      <section id="posts">
+        <div class="container">
+            <h2>Instagram • Últimos Posts</h2>
+            <div id="instagram-photos" class="grid"></div>
+        </div>
+      </section>
+      
+      <section id="hobbies">
+        <div class="container">
+            <h2>Meus Hobbies</h2>
+            <ul class="hobby-list" id="hobby-list">
+                <!-- Hobbies carregam automaticamente -->
+            </ul>
+        </div>
+      </section>
+      
+      <section id="contato">
+        <div class="container">
+            <h2>Contato</h2>
+            <p>Email: <a href="mailto:richard.bricio@gmail.com">richard.bricio@gmail.com</a></p>
+            <div class="social">
+                <a href="https://www.linkedin.com/in/richardbricio/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" /></a>
+                <a href="https://github.com/RichardBricio" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" /></a>
+                <a href="https://instagram.com/richardbricio" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/instagram/instagram-original.svg" alt="Instagram"/></a>
+            </div>
+        </div>
+      </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 Richard Bricio — Site feito com 💙</p>
+    </footer>
+
+<!-- SCRIPT: Projetos GitHub -->
+<script>
+const GITHUB_USER = "RichardBricio";
+const MAX_PROJECTS = 6;
+
+function truncate(text, length) {
+    return text?.length > length ? text.substring(0, length - 1) + "…" : text;
+}
+fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`)
+  .then(response => response.json())
+  .then(repos => {
+    const grid = document.getElementById('github-projects');
+    if (!Array.isArray(repos)) {
+      grid.innerHTML = "<p>Não foi possível carregar projetos do GitHub.</p>";
+      return;
+    }
+    repos.slice(0, MAX_PROJECTS).forEach(repo => {
+      const imgUrl = `https://opengraph.githubassets.com/1/${GITHUB_USER}/${repo.name}`;
+      const project = document.createElement('div');
+      project.className = "card";
+      project.innerHTML = `
+        <img src="${imgUrl}" alt="${repo.name}">
+        <h3>${repo.name}</h3>
+        <p>${truncate(repo.description || "Sem descrição.", 90)}</p>
+        <a href="${repo.html_url}" target="_blank">Ver no GitHub →</a>
+      `;
+      grid.appendChild(project);
+    });
+  })
+  .catch(() => {
+    document.getElementById('github-projects').innerHTML = "<p>Não foi possível carregar projetos do GitHub.</p>";
+  });
+</script>
+
+<!-- SCRIPT: Hobbies & Bio dinâmicos -->
+<script>
+const PROFILE = {
+  foto: "https://avatars.githubusercontent.com/u/25221443?v=4",
+  hobbies: [
+    { nome: "Fotografia", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=80&q=80" },
+    { nome: "Ciclismo", img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=80&q=80" },
+    { nome: "Leitura", img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80" }
+  ]
+};
+// Foto perfil no Hero e About
+document.getElementById("profile-img").src = PROFILE.foto;
+document.getElementById("about-img").src = PROFILE.foto;
+const hobbyList = document.getElementById("hobby-list");
+PROFILE.hobbies.forEach(hobby => {
+    hobbyList.innerHTML += `
+      <li>
+        <img src="${hobby.img}" alt="${hobby.nome}">
+        <span>${hobby.nome}</span>
+      </li>`;
+});
+</script>
+
+<!-- SCRIPT: Instagram Posts - Necessário token válido para Instagram Graph API (perfil comercial) -->
+<script src="https://unpkg.com/instafeed.js@2"></script>
+<script>
+var feed = new Instafeed({
+  accessToken: 'SEU_USER_ACCESS_TOKEN', // Troque pelo seu token válido do Instagram Graph API
+  limit: 6,
+  template: `
+    <div class="card">
+      <img src="{{image}}" alt="{{caption}}" />
+      <p>{{caption}}</p>
+    </div>
+  `,
+  target: "instagram-photos"
+});
+feed.run();
+</script>
+
+</body>
+</html>

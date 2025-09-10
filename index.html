@@ -162,11 +162,8 @@ const PROFILE = {
   foto: "https://i.ibb.co/jkHrVxLM/Chat-GPT-Image-12-de-abr-de-2025-23-20-10.png",
   hobbies: [
     { nome: "Futebol", img: "https://img.icons8.com/color/96/000000/soccer-ball.png" },
-    { nome: "E-sports (Dota 2)", img: "https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1d/Icon-dota_default.png" },
-    { nome: "E-sports (CS2)", img: "https://img.icons8.com/color/96/000000/counter-strike.png" },
-    { nome: "Música (Eletrônico)", img: "https://img.icons8.com/color/96/000000/dj.png" },
-    { nome: "Música (Sertanejo)", img: "https://img.icons8.com/color/96/000000/guitar.png" },
-    { nome: "Música (Trap)", img: "https://img.icons8.com/color/96/000000/headphones--v2.png" },
+    { nome: "E-sports", img: "https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1d/Icon-dota_default.png" },
+    { nome: "Música", img: "https://img.icons8.com/color/96/000000/dj.png" },
     { nome: "Natação", img: "https://img.icons8.com/color/96/000000/swimming.png" },
     { nome: "Musculação", img: "https://img.icons8.com/color/96/000000/dumbbell.png" },
     { nome: "Crossfit", img: "https://img.icons8.com/color/96/000000/kettlebell.png" },
@@ -177,7 +174,6 @@ const PROFILE = {
 document.getElementById("profile-img").src = PROFILE.foto;
 document.getElementById("about-img").src = "https://i.ibb.co/fdG1N8nj/Chat-GPT-Image-31-de-mar-de-2025-21-13-31.png";
 const hobbyList = document.getElementById("hobby-list");
-hobbyList.innerHTML = ""; // Limpa hobbies anteriores, se houver
 PROFILE.hobbies.forEach(hobby => {
     hobbyList.innerHTML += `
       <li>
@@ -189,6 +185,7 @@ PROFILE.hobbies.forEach(hobby => {
 
 </body>
 </html>
+
 
 
 

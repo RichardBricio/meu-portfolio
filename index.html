@@ -19,7 +19,7 @@
         <nav>
             <a href="#sobre">Sobre mim</a>
             <a href="#portfolio">Portfólio</a>
-            <a href="#posts">Posts</a>
+            <a href="#posts">Instagram</a>
             <a href="#hobbies">Hobbies</a>
             <a href="#contato">Contato</a>
         </nav>
@@ -55,17 +55,21 @@
       
       <section id="posts">
         <div class="container">
-            <h2>Instagram • Últimos Posts</h2>
-            <div id="instagram-photos" class="grid"></div>
+            <h2>Instagram</h2>
+            <!-- SnapWidget -->
+            <div style="max-width: 100%; display: flex; justify-content: center;">
+                <iframe src="https://snapwidget.com/embed/1107375" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:765px; height:510px; max-width: 100%;" title="Posts from Instagram"></iframe>
+            </div>
+            <p style="text-align:center; margin:12px 0;">
+              Siga no Instagram: <a href="https://instagram.com/richardbricio" target="_blank">@richardbricio</a>
+            </p>
         </div>
       </section>
       
       <section id="hobbies">
         <div class="container">
             <h2>Meus Hobbies</h2>
-            <ul class="hobby-list" id="hobby-list">
-                <!-- Hobbies carregam automaticamente -->
-            </ul>
+            <ul class="hobby-list" id="hobby-list"></ul>
         </div>
       </section>
       
@@ -90,7 +94,6 @@
 <script>
 const GITHUB_USER = "RichardBricio";
 const MAX_PROJECTS = 6;
-
 function truncate(text, length) {
     return text?.length > length ? text.substring(0, length - 1) + "…" : text;
 }
@@ -120,7 +123,6 @@ fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`)
   });
 </script>
 
-<!-- SCRIPT: Hobbies & Bio dinâmicos -->
 <script>
 const PROFILE = {
   foto: "https://avatars.githubusercontent.com/u/25221443?v=4",
@@ -130,7 +132,6 @@ const PROFILE = {
     { nome: "Leitura", img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80" }
   ]
 };
-// Foto perfil no Hero e About
 document.getElementById("profile-img").src = PROFILE.foto;
 document.getElementById("about-img").src = PROFILE.foto;
 const hobbyList = document.getElementById("hobby-list");
@@ -141,23 +142,6 @@ PROFILE.hobbies.forEach(hobby => {
         <span>${hobby.nome}</span>
       </li>`;
 });
-</script>
-
-<!-- SCRIPT: Instagram Posts - Token válido -->
-<script src="https://unpkg.com/instafeed.js@2"></script>
-<script>
-var feed = new Instafeed({
-  accessToken: 'EAAUYZBhbWAlABPVKqJfbH57g1SFnEpvlAO9MJQy1IVmcQPaL0aqdjTmkZBeFzBsN2LxaFygEz1UhF24vs5KieYgj47IZCZAbHCA9ZCZB530czMh7b3OcV6ZAlZBZANY2eODAhfiWNYCw0bqvGeqe5waOO0zZCjlBXmC4eh3ZBMWBfcO5cBpUWMiEeqggA18AU2sD9V8rKlVZB8sIZARsM6Ozc',
-  limit: 6,
-  template: `
-    <div class="card">
-      <img src="{{image}}" alt="{{caption}}" />
-      <p>{{caption}}</p>
-    </div>
-  `,
-  target: "instagram-photos"
-});
-feed.run();
 </script>
 
 </body>

@@ -159,7 +159,7 @@ fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`)
 
 <script>
 const PROFILE = {
-  foto: "https://avatars.githubusercontent.com/u/25221443?v=4",
+  foto: "https://i.ibb.co/jkHrVxLM/Chat-GPT-Image-12-de-abr-de-2025-23-20-10.png",
   hobbies: [
     { nome: "Futebol", img: "https://img.icons8.com/color/96/000000/soccer-ball.png" },
     { nome: "E-sports (Dota 2)", img: "https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1d/Icon-dota_default.png" },
@@ -171,12 +171,13 @@ const PROFILE = {
     { nome: "Musculação", img: "https://img.icons8.com/color/96/000000/dumbbell.png" },
     { nome: "Crossfit", img: "https://img.icons8.com/color/96/000000/kettlebell.png" },
     { nome: "Praia", img: "https://img.icons8.com/color/96/000000/beach.png" },
-    { nome: "Vôlei", img: "https://img.icons8.com/color/96/000000/volleyball.png" 
+    { nome: "Vôlei", img: "https://img.icons8.com/color/96/000000/volleyball.png" }
   ]
 };
 document.getElementById("profile-img").src = PROFILE.foto;
-document.getElementById("about-img").src = PROFILE.foto;
+document.getElementById("about-img").src = "https://i.ibb.co/fdG1N8nj/Chat-GPT-Image-31-de-mar-de-2025-21-13-31.png";
 const hobbyList = document.getElementById("hobby-list");
+hobbyList.innerHTML = ""; // Limpa hobbies anteriores, se houver
 PROFILE.hobbies.forEach(hobby => {
     hobbyList.innerHTML += `
       <li>
@@ -188,6 +189,7 @@ PROFILE.hobbies.forEach(hobby => {
 
 </body>
 </html>
+
 
 
 
